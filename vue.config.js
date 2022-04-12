@@ -6,7 +6,6 @@ function resolve(dir) {
 }
 
 module.exports = {
-  publicPath:'./note',
   lintOnSave: false,
   transpileDependencies: ["vuex-persist"],
 };

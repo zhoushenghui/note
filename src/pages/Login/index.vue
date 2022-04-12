@@ -51,6 +51,8 @@ export default {
   methods: {
     // 登入
     submit() {
+      if (!this.form.userName.trim() || !this.form.password.trim()) return alert("输入不能为空！");
+      
       var axios = require("axios");
       var data = JSON.stringify({
         username: this.form.userName,
