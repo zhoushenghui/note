@@ -13,12 +13,12 @@ VueRouter.prototype.push = function (location, resolve, reject) {
 }
 
 const router = new VueRouter({
+    base:'note',
     routes
 });
 
 router.afterEach((to) => {
     document.title = to.name
-    NProgress.done(); 
 });
 
 export default router
