@@ -1,51 +1,42 @@
 <template>
-  <transition-group
-    appear
-    name="animate_animated animate_bounce"
-    enter-active-class="animate_swing"
-    leave-active-class="animate_backOutUp"
-  >
-    <li key="1">
-      <input
-        class="check"
-        type="checkbox"
-        :checked="todoObj.done"
-        @change="getId(todoObj.id)"
-      />
-      <h4 v-show="!todoObj.isEdit" @dblclick="editTodo(todoObj)">
-        {{ todoObj.title }}
-      </h4>
-      <input
-        v-show="todoObj.isEdit"
-        type="text"
-        class="form-control"
-        aria-label="..."
-        :value="todoObj.title"
-        @blur="updetaTodo(todoObj, $event)"
-        ref="inputTitle"
-      />
-      <button
-        class="edit"
-        type="button"
-        v-show="!todoObj.isEdit"
-        @click="editTodo(todoObj)"
-      >
-        edit
-      </button>
-      <button
-        type="button"
-        v-show="!todoObj.isEdit"
-        class="del"
-        @click="deleteTodo(todoObj)"
-      >
-        delete
-      </button>
-    </li>
-  </transition-group>
+  <li>
+    <input
+      class="check"
+      type="checkbox"
+      :checked="todoObj.done"
+      @change="getId(todoObj.id)"
+    />
+    <h4 v-show="!todoObj.isEdit" @dblclick="editTodo(todoObj)">
+      {{ todoObj.title }}
+    </h4>
+    <input
+      v-show="todoObj.isEdit"
+      type="text"
+      class="form-control"
+      aria-label="..."
+      :value="todoObj.title"
+      @blur="updetaTodo(todoObj, $event)"
+      ref="inputTitle"
+    />
+    <button
+      class="edit"
+      type="button"
+      v-show="!todoObj.isEdit"
+      @click="editTodo(todoObj)"
+    >
+      edit
+    </button>
+    <button
+      type="button"
+      v-show="!todoObj.isEdit"
+      class="del"
+      @click="deleteTodo(todoObj)"
+    >
+      delete
+    </button>
+  </li>
 </template>
 <script>
-import "animate.css";
-
 export default {
   name: "MyTodo",
   props: ["todoObj"],
@@ -118,8 +109,8 @@ li .form-control {
   margin-bottom: 10px;
 }
 li button {
-  border:none;
-  margin-left:5px;
+  border: none;
+  margin-left: 5px;
   position: relative;
   bottom: -5px;
   border-radius: 10px;
