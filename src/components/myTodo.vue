@@ -1,41 +1,51 @@
 <template>
-  <div class="item">
-    <ul>
-      <li>
-        <input
-          class="check"
-          type="checkbox"
-          :checked="todoObj.done"
-          @change="getId(todoObj.id)"
-        />
-        <h4 v-show="!todoObj.isEdit" @dblclick="editTodo(todoObj)">
-          {{ todoObj.title }}
-        </h4>
-        <input
-          v-show="todoObj.isEdit"
-          type="text"
-          class="form-control"
-          aria-label="..."
-          :value="todoObj.title"
-          @blur="updetaTodo(todoObj, $event)"
-          ref="inputTitle"
-        />
-        <button type="button" class="del" @click="deleteTodo(todoObj)">
-          delete
-        </button>
-        <button
-          class="edit"
-          type="button"
-          v-show="!todoObj.isEdit"
-          @click="editTodo(todoObj)"
-        >
-          edit
-        </button>
-      </li>
-    </ul>
-  </div>
+  <transition-group
+    appear
+    name="animate_animated animate_bounce"
+    enter-active-class="animate_swing"
+    leave-active-class="animate_backOutUp"
+  >
+    <li key="1">
+      <input
+        class="check"
+        type="checkbox"
+        :checked="todoObj.done"
+        @change="getId(todoObj.id)"
+      />
+      <h4 v-show="!todoObj.isEdit" @dblclick="editTodo(todoObj)">
+        {{ todoObj.title }}
+      </h4>
+      <input
+        v-show="todoObj.isEdit"
+        type="text"
+        class="form-control"
+        aria-label="..."
+        :value="todoObj.title"
+        @blur="updetaTodo(todoObj, $event)"
+        ref="inputTitle"
+      />
+      <button
+        class="edit"
+        type="button"
+        v-show="!todoObj.isEdit"
+        @click="editTodo(todoObj)"
+      >
+        edit
+      </button>
+      <button
+        type="button"
+        v-show="!todoObj.isEdit"
+        class="del"
+        @click="deleteTodo(todoObj)"
+      >
+        delete
+      </button>
+    </li>
+  </transition-group>
 </template>
 <script>
+import "animate.css";
+
 export default {
   name: "MyTodo",
   props: ["todoObj"],
@@ -79,37 +89,40 @@ export default {
 };
 </script>
 <style scoped>
-.item {
-  margin-top: 30px;
-  width: 90%;
-}
-.item ul li {
+li {
   font-size: 18px;
   list-style: none;
   margin-left: 0;
-  height: 35px;
+  height: 40px;
   border-bottom: lawngreen 2px dashed;
 }
-.item ul li:hover {
+li:hover {
   background-color: aquamarine;
 }
-.item ul li:hover button {
-  display: block;
+li:hover button {
+  display: inline-block;
 }
-.item ul li h4 {
+li h4 {
+  position: relative;
+  bottom: -5px;
   line-height: 35px;
   display: inline;
   margin-left: 5px;
 }
-.item ul li input {
+li .form-control {
+  position: relative;
+  top: -22px;
+  left: 10px;
   margin-left: 5px;
+  display: inline;
+  margin-bottom: 10px;
 }
-.item ul li button {
-  display: none;
+li button {
+  border:none;
+  margin-left:5px;
+  position: relative;
+  bottom: -5px;
   border-radius: 10px;
-  float: right;
-  margin-right: 25px;
-  margin-top: 3px;
 }
 .del {
   background-color: rgb(244, 92, 127);

@@ -1,30 +1,27 @@
 <template>
   <div>
-    <transition
-      appear
-      name="animate_animated animate_bounce"
-      enter-active-class="animate_swing"
-      leave-active-class=""
-    >
-      <div class="todo-footer" v-show="tatol">
-        <!-- <input type="checkbox" v-model="isAll" /> -->
-        <h4>
-          已完成<span>{{ doneNumber }}</span
-          >/总共<span>{{ tatol }}</span>
-        </h4>
-        <button
-          class="btn btn-danger"
-          type="button"
-          @click="deleteAllDone(trueObj)"
-        >
-          delete All Done
-        </button>
-      </div>
-    </transition>
+    <div class="todo-footer" v-show="tatol">
+      <!-- <input type="checkbox" v-model="isAll" /> -->
+      <p>
+        已完成<span> {{ doneNumber }}</span
+        >/总共<span>{{ tatol }}</span>
+      </p>
+      <button
+        class="btn btn-danger"
+        type="button"
+        @click="deleteAllDone(trueObj)"
+      >
+        delete All Done
+      </button>
+    </div>
     <ul>
       <li v-for="todos in obj" :key="todos.id" class="listDown">
-        <input type="checkbox" :checked="todos.complete" />
-        <h4>{{ todos.title }}</h4>
+        
+          <div>
+            <input type="checkbox" :checked="todos.complete" disabled />
+            <h4>{{ todos.title }}</h4>
+          </div>
+        
       </li>
     </ul>
   </div>
@@ -33,48 +30,51 @@
 export default {
   name: "footerTodo",
   computed: {
-    obj(){
-      return this.$store.state.obj
+    obj() {
+      return this.$store.state.obj;
     },
-    trueObj(){
-      return this.$store.state.trueObj
+    trueObj() {
+      return this.$store.getters.trueObj;
     },
     tatol() {
       return this.obj.length;
     },
     doneNumber() {
-      return this.obj.reduce((pre, todo) => pre + (todo.complete ? 1 : 0), 0);
-    }
+      return this.trueObj.length;
+    },
   },
   methods: {
-    deleteAllDone(obj) {
+    deleteAllDone(trueObj) {
       if (confirm("确定删除吗？")) {
-        this.$store.dispatch("deleteAllDone", obj);
+        const delObj = trueObj.map((todo) => todo.id);
+        this.$store.dispatch("deleteAllDone", delObj);
       }
     },
-  }
+  },
 };
 </script>
 <style scoped>
 .todo-footer {
-  border: lightcoral 1px dashed;
-  margin: 50px 20px 0px 20px;
-  padding: 20px;
+  margin: 0px 20px 0px 20px;
+  padding: 2px;
 }
-.listDown{
+.listDown {
   list-style: none;
   margin-top: 30px;
 }
- input {
+input {
   display: inline;
   margin-top: 5px;
 }
- h4 {
+h4 {
   display: inline;
   margin-left: 10px;
 }
+p {
+  margin-left: 50%;
+}
 .todo-footer button {
-  float: right;
   margin-bottom: 5px;
+  margin-left: 50%;
 }
 </style>

@@ -1,28 +1,20 @@
 <template>
-  <div class="row">
-    <div class="list">
-      <router-link 
+  <div class="todolistup">
+    <div class="todolistbtn">
+      <router-link
         active-class="active"
         class="btn btn-primary"
-        :to="{
-          name: 'note-todo',
-          query: {
-            msg: 'todoList:',
-          },
-        }"
+        to="/todoMain/list/todo"
         >todo</router-link
       >
       <router-link
         class="btn btn-primary"
         active-class="active"
-        :to="{
-          name: 'note-done',
-          params: {
-            msg: 'doneList:',
-          },
-        }"
+        to="/todoMain/list/done"
         >done</router-link
       >
+    </div>
+    <div class="todolist">
       <router-view></router-view>
     </div>
   </div>
@@ -33,4 +25,10 @@ export default {
   name: "MyList",
 };
 </script>
+<style scoped>
+.todolistbtn{
+  height:30px;
+  width: 100%;
+}
+</style>
 

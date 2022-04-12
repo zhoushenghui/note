@@ -1,31 +1,16 @@
-<template>  
+<template>
   <div class="main">
-    <div class="row">
-      <router-link
-        replace
-        class="col-md-6 btn btn-primary"
-        to="/add"
-        active-class="active"
-        >Add</router-link
-      >
-      <router-link
-        replace
-        class="col-md-6 btn btn-primary"
-        to="/list"
-        active-class="active"
-        >List</router-link
-      >
-    </div>
-    <div class="list">
-      <router-view></router-view>
-    </div>
-  </div> 
+    <todoHeader />
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
+import todoHeader from "./components/todoHeader";
 export default {
   name: "App",
-}
+  components: { todoHeader },
+};
 </script>
 
 <style>
@@ -33,21 +18,18 @@ body {
   background-image: url(assets/picture.webp);
 }
 .main {
-  height: 99%;
-  width: 70%;
-  border: lightgoldenrodyellow 1px solid;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 12px;
-}
-.row {
   width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  height: 100%;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 .list {
-  margin: 20px 40px 10px 40px;
-  padding-bottom: 10px;
-  background-color: blanchedalmond;
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>

@@ -18,9 +18,10 @@ const actions = {
 
         var config = {
             method: "post",
-            url: "https://todo.theappis.fun/todo",
+            url: "https://todo.theappis.fun/api/todo",
             headers: {
                 "Content-Type": "application/json",
+                'Token': window.sessionStorage.getItem('token'),
             },
             data: data,
         };
@@ -29,11 +30,7 @@ const actions = {
             .then((response) => {
                 if (response.status === 200) {
                     var data = response.data.data;
-                    if (data.complete == true) {
-                        context.commit('ADDTRUE', data)
-                    } else if (data.complete == false) {
-                        context.commit('ADDFALSE', data)
-                    }
+                    context.commit('ADD', data)
                 }
             })
             .catch(function (error) {
@@ -45,17 +42,15 @@ const actions = {
         var axios = require("axios");
         var config = {
             method: "delete",
-            url: "https://todo.theappis.fun/todo/" + id,
-            headers: {},
+            url: "https://todo.theappis.fun/api/todo/" + id,
+            headers: {
+                'Token': window.sessionStorage.getItem('token'),
+            },
         };
         axios(config)
             .then((response) => {
                 if (response.data.msg === 'OK') {
-                    if (value.complete == true) {
-                        context.commit('DELETETRUETODO', id)
-                    } else if (value.complete == false) {
-                        context.commit('DELETEFALSETODO', id)
-                    }
+                    context.commit('DELETETODO', id)
                 }
             })
             .catch(function (error) {
@@ -71,9 +66,10 @@ const actions = {
         });
         var config = {
             method: 'patch',
-            url: 'https://todo.theappis.fun/todo/' + id,
+            url: 'https://todo.theappis.fun/api/todo/' + id,
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Token': window.sessionStorage.getItem('token'),
             },
             data: data
         };
@@ -97,9 +93,10 @@ const actions = {
 
         var config = {
             method: 'patch',
-            url: 'https://todo.theappis.fun/todos',
+            url: 'https://todo.theappis.fun/api/todos',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Token': window.sessionStorage.getItem('token'),
             },
             data: data
         };
@@ -107,50 +104,34 @@ const actions = {
         axios(config)
             .then(response => {
                 if (response.data.msg === 'OK') {
-                    context.commit('SUREDONE', idArry)
+                    context.commit('SUREDONE')
                 };
             })
             .catch(function (error) {
                 console.log(error);
             });
     },
-    getId(context, id) {
+    deleteAllDone(context, idArry) {
         var axios = require('axios');
         var data = JSON.stringify({
-            "complete": true
+            "todo_ids": idArry
         });
 
         var config = {
-            method: 'patch',
-            url: 'https://todo.theappis.fun/todo/' + id,
+            method: 'delete',
+            url: 'https://todo.theappis.fun/api/todos',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Token': window.sessionStorage.getItem('token'),
             },
             data: data
         };
 
         axios(config)
             .then((response) => {
-                if (response.data.msg === 'OK') {
-                    context.commit('GETIDD', id)
-                }
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    },
-    deleteAllDone(context, todos) {
-        var axios = require('axios');
-
-        var config = {
-            method: 'delete',
-            url: 'https://todo.theappis.fun/todo/all',
-            headers: {}
-        };
-
-        axios(config)
-            .then((response) => {
-                if (response.data.msg === 'OK') context.commit('DELETEALLDONE', todos)
+                if (response.data.status == 200) {
+                    context.commit('DELETEALLDONE')
+                };
             })
             .catch(function (error) {
                 console.log(error);
@@ -158,22 +139,16 @@ const actions = {
     },
 }
 const mutations = {
-    ADDTRUE(state, value) {
-        state.trueObj.unshift(value);
+    ADD(state, value) {
         state.obj.unshift(value);
-    },
-    ADDFALSE(state, value) {
         state.falseObj.unshift(value);
-        state.obj.unshift(value);
     },
-    DELETETRUETODO(state, id) {
-        state.trueObj = state.trueObj.filter(todo => todo.id !== id)
+
+    DELETETODO(state, id) {
         state.obj = state.obj.filter(todo => todo.id !== id)
-    },
-    DELETEFALSETODO(state, id) {
         state.falseObj = state.falseObj.filter(todo => todo.id !== id)
-        state.obj = state.obj.filter(todo => todo.id !== id)
     },
+
     UPDATETODO(state, value) {
         state.falseObj.forEach((todo) => {
             if (todo.id === value.id) todo.title = value.title
@@ -182,11 +157,8 @@ const mutations = {
             if (todo.id === value.id) todo.title = value.title
         })
     },
-    GETIDD(state, id) {
-        var newTrueList = [];
-        newTrueList = state.falseObj.filter(todo => todo.id == id)
-        state.trueObj = state.trueObj.concat(newTrueList[0])
-        state.falseObj = state.falseObj.filter(todo => todo.id !== id)
+    SUREDONE(state) {
+        state.falseObj = state.falseObj.filter(todo => todo.complete == false)
     },
     GETID(state, id) {
         state.falseObj.forEach((todo) => {
@@ -196,28 +168,25 @@ const mutations = {
             if (todo.id === id) todo.complete = !todo.complete
         })
     },
-    SUREDONE(state, idArry) {
-        var newTrueList = [];
-        for (let i = 0; i < idArry.length; i++) {
-            newTrueList[i] = state.falseObj.filter(todo => todo.id == idArry[i])
-            state.trueObj = state.trueObj.concat(newTrueList[i])
-            state.falseObj = state.falseObj.filter(todo => todo.id !== idArry[i])
-        }
-    },
-    DELETEALLDONE(state, todos) {
-        state.trueObj = todos.filter(todo => todo.complete == false)
+    DELETEALLDONE(state) {
         state.obj = state.obj.filter(todo => todo.complete == false)
     }
 }
 const state = {
+    userName: '',
     obj: [],
-    trueObj: [],
     falseObj: []
+}
+const getters = {
+    trueObj(state) {
+        return state.obj.filter((todo) => todo.complete == true)
+    }
 }
 
 export default new Vuex.Store({
     actions,
     mutations,
     state,
+    getters
 })
 
