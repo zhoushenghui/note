@@ -85,6 +85,8 @@ const actions = {
             });
     },
     sureDone(context, idArry) {
+        console.log("@", idArry)
+
         var axios = require('axios');
         var data = JSON.stringify({
             "todo_ids": idArry,

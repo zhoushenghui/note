@@ -73,11 +73,11 @@ export default {
 
 <style scoped>
 .row {
-  background-color: antiquewhite ;
-  width: 80%;
-  position: absolute;
-  top: 20%;
-  left: 15%;
+  background-color: #f8e4c9 ;
+  width: 90%;
+  position: fixed;
+  top: 10%;
+  left: 8%;
 }
 .passBtn {
   margin: 0;

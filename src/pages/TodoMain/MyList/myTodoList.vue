@@ -10,7 +10,7 @@
         />
       </ul>
     </div>
-    <h1 v-show="!isShow">loading...</h1>
+    <h1 v-show="!isShow" class="load">loading...</h1>
     <button
       v-show="isShow"
       class="btn btn-primary send"
@@ -52,6 +52,11 @@ export default {
 .suibian {
   padding-bottom: 20px;
 }
+.load{
+  position: relative;
+  top:-370px;
+
+}
 .send {
   margin-top: 20px;
   margin-left: 50%;
@@ -59,5 +64,8 @@ export default {
 .item {
   margin-top: 30px;
   width: 90%;
+  height:370px;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 </style>

@@ -3,26 +3,8 @@
     <div class="addTodo">
       <h6>默认：todo</h6>
       <span class="input-group-addon">
-        <label class="radio-inline">
-          <input
-            type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio1"
-            v-model="change"
-            value="false"
-          />
-          todo
-        </label>
-        <label class="radio-inline">
-          <input
-            type="radio"
-            name="inlineRadioOptions"
-            id="inlineRadio2"
-            v-model="change"
-            value="true"
-          />
-          done
-        </label>
+        <el-radio v-model="change" label="false">todo</el-radio>
+        <el-radio v-model="change" label="true">done</el-radio>
       </span>
       <div class="grid-content bg-purple-light">
         <input
@@ -43,7 +25,7 @@ export default {
   name: "MyAdding",
   data() {
     return {
-      change: false,
+      change: "false",
     };
   },
   components: { footerTodo },
@@ -71,11 +53,10 @@ export default {
   margin: auto;
   border: none;
   background-color: rgb(245, 225, 197);
-  width: 70%;
+  width: 80%;
 }
 .grid-content {
-  margin: auto;
-  width: 70%;
+  width: 80%;
   border-radius: 4px;
   min-height: 36px;
 }

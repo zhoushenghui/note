@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import store from "@/store";
 export default {
   name: "index",
   data() {
@@ -45,14 +46,20 @@ export default {
       btnLoading: false,
     };
   },
-  mounted() {
-    this.form.userName = this.$store.state.userName;
+  beforeRouteEnter(to, from, next) {
+    store.state.userName = "";
+    next();
+  },
+  mounted(){
+    this.form.userName = window.sessionStorage.getItem("name");
+    window.sessionStorage.setItem("name", "");
   },
   methods: {
     // 登入
     submit() {
-      if (!this.form.userName.trim() || !this.form.password.trim()) return alert("输入不能为空！");
-      
+      if (!this.form.userName.trim() || !this.form.password.trim())
+        return alert("输入不能为空！");
+
       var axios = require("axios");
       var data = JSON.stringify({
         username: this.form.userName,
@@ -72,6 +79,7 @@ export default {
         .then((response) => {
           if (response.data.status === 200) {
             this.$store.state.userName = this.form.userName;
+            window.sessionStorage.setItem("name", this.form.userName);
             window.sessionStorage.setItem("token", response.data.data.token);
             this.$router.push({ path: "/todoMain" });
           }

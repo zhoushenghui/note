@@ -20,13 +20,9 @@ body {
 .main {
   width: 100%;
   height: 100%;
-  -webkit-background-size: cover;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
 }
 .list {
-  width: 400px;
+  width: 70%;
   position: absolute;
   top: 50%;
   left: 50%;

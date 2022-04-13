@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <a v-show="isLogin">{{ userName }}</a>
+    <a> {{ userName }} </a>
     <router-link to="/">登录</router-link>
     <router-link to="/regist">注册</router-link>
   </div>
@@ -9,14 +9,11 @@
 <script>
 export default {
   name: "todoHeader",
-  data() {
-    return {
-      isLogin: true,
-    };
-  },
   computed: {
     userName() {
-      return this.$store.state.userName;
+      return (
+        this.$store.state.userName || window.sessionStorage.getItem("name")
+      );
     },
   },
 };
@@ -24,11 +21,14 @@ export default {
 
 <style>
 .header {
+  z-index: 999;
   width: 100%;
   background-color: rgb(235, 250, 223);
-  font-size: 18px;
+  font-size: 16px;
   position: fixed;
   top: 0px;
+  padding-left: 50%;
+  padding-top: 5px;
 }
 a {
   float: left;

@@ -14,21 +14,29 @@
         delete All Done
       </button>
     </div>
-    <ul>
-      <li v-for="todos in obj" :key="todos.id" class="listDown">
-        
-          <div>
-            <input type="checkbox" :checked="todos.complete" disabled />
-            <h4>{{ todos.title }}</h4>
-          </div>
-        
-      </li>
+    <ul class="ulLine">
+      <transition-group name="animated">
+        <li
+          v-for="todos in obj"
+          :key="todos.id"
+          class="listDown"
+          v-show="isAnimate"
+        >
+          <input type="checkbox" :checked="todos.complete" disabled />
+          <h4>{{ todos.title }}</h4>
+        </li>
+      </transition-group>
     </ul>
   </div>
 </template>
 <script>
 export default {
   name: "footerTodo",
+  data() {
+    return {
+      isAnimate: true,
+    };
+  },
   computed: {
     obj() {
       return this.$store.state.obj;
@@ -58,9 +66,17 @@ export default {
   margin: 0px 20px 0px 20px;
   padding: 2px;
 }
+.ulLine {
+  height: 300px;
+  width: 90%;
+  overflow-y: scroll;
+}
 .listDown {
+  border: rgb(64, 238, 139) 1px solid;
+  width: 100%;
+  background-color: #f5c78a;
   list-style: none;
-  margin-top: 30px;
+  margin-top: 10px;
 }
 input {
   display: inline;
@@ -76,5 +92,14 @@ p {
 .todo-footer button {
   margin-bottom: 5px;
   margin-left: 50%;
+}
+animated-enter {
+  width: 0px;
+}
+anmimated-enter-to {
+  width: 100%;
+}
+animated-enter-active {
+  transition: all 2s linear;
 }
 </style>

@@ -36,6 +36,8 @@ export default {
   margin-top: 30px;
   width: 90%;
   padding-bottom: 20px;
+  height: 444px;
+  overflow-y: scroll;
 }
 .suibian ul li {
   font-size: 18px;
@@ -51,6 +53,10 @@ export default {
   display: inline-block;
 }
 .suibian ul li h4 {
+  width: 55%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
   line-height: 35px;
   display: inline;
   margin-left: 5px;
@@ -59,9 +65,9 @@ export default {
   margin-left: 5px;
 }
 .suibian ul li button {
+  float:right;
   position: relative;
-  left:5px;
-  bottom:2px;
+  bottom: 2px;
   border-radius: 10px;
   margin-top: 3px;
 }
