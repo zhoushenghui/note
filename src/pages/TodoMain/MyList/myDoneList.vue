@@ -1,6 +1,6 @@
 <template>
   <div class="suibian">
-    <ul>
+    <ul v-if="isShow" class="ulList">
       <li v-for="todo in trueObj" :key="todo.id">
         <h4>{{ todo.title }}</h4>
         <button type="button" class="btn btn-danger" @click="deleteTodo(todo)">
@@ -8,7 +8,7 @@
         </button>
       </li>
     </ul>
-    <h1 v-show="!isShow">loading...</h1>
+    <h1 v-if="!isShow" class="load">loading...</h1>
   </div>
 </template>
 <script>
@@ -33,45 +33,33 @@ export default {
 </script>
 <style scoped>
 .suibian {
-  margin-top: 30px;
-  width: 90%;
-  padding-bottom: 20px;
-  height: 444px;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.load {
+  margin: 200px auto;
+}
+.ulList {
+  width: 100%;
+  height: 577px;
+  padding: 0px;
+  overflow: hidden;
   overflow-y: scroll;
 }
 .suibian ul li {
   font-size: 18px;
-  margin-left: 0;
-  margin-top: 30px;
-  height: 35px;
+  height: 45px;
   border-bottom: rgb(205, 240, 170) 2px dashed;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
 }
 .suibian ul li:hover {
   background-color: aquamarine;
-}
-.suibian ul li:hover button {
-  display: inline-block;
-}
-.suibian ul li h4 {
-  width: 55%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  line-height: 35px;
-  display: inline;
-  margin-left: 5px;
-}
-.suibian ul li input {
-  margin-left: 5px;
-}
-.suibian ul li button {
-  float:right;
-  position: relative;
-  bottom: 2px;
-  border-radius: 10px;
-  margin-top: 3px;
-}
-.del {
-  background-color: rgb(244, 92, 127);
 }
 </style>

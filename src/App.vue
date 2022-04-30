@@ -1,7 +1,9 @@
 <template>
   <div class="main">
     <todoHeader />
-    <router-view></router-view>
+    <div class="list">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
@@ -20,12 +22,19 @@ body {
 .main {
   width: 100%;
   height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
 }
 .list {
+  height: calc(100%-30px);
   width: 70%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  margin: auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+.login {
+  width: 380px;
+  margin: 200px auto;
 }
 </style>

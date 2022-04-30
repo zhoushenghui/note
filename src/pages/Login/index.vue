@@ -1,6 +1,6 @@
 <template>
-  <div class="list">
-    <el-form ref="form" :model="form" :rules="rules" label-width="0">
+  <div class="login">
+    <el-form ref="form" :model="form" :rules="rules" label-width="0" class="elForm">
       <el-form-item>
         <el-input v-model="form.userName" placeholder="请输入用户名">
         </el-input>

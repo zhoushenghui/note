@@ -1,8 +1,10 @@
 <template>
   <div class="header">
-    <a> {{ userName }} </a>
-    <router-link to="/">登录</router-link>
-    <router-link to="/regist">注册</router-link>
+    <div class="headerWai">
+      <a> {{ userName }} </a>
+      <router-link to="/"><bdo dir="rtl">登录</bdo></router-link>
+      <router-link to="/regist"><bdo dir="rtl">注册</bdo></router-link>
+    </div>
   </div>
 </template>
 
@@ -22,17 +24,27 @@ export default {
 <style>
 .header {
   z-index: 999;
+  height: 30px;
   width: 100%;
   background-color: rgb(235, 250, 223);
   font-size: 16px;
-  position: fixed;
-  top: 0px;
-  padding-left: 50%;
-  padding-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.headerWai {
+  height: 100%;
+  align-items: flex-end;
+  width: 70%;
+  background-color: rgb(212, 245, 185);
+  margin: 0px auto;
+  align-self: center;
+  display: flex;
+  justify-content: flex-end;
 }
 a {
-  float: left;
-  margin-left: 10px;
+  display: inline-block;
+  padding: 0px 20px;
 }
 a:hover {
   background-color: rgb(200, 252, 157);

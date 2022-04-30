@@ -1,5 +1,5 @@
 <template>
-  <div class="list">
+  <div class="login">
     <el-form ref="form" :model="form" :rules="rules" label-width="0">
       <el-form-item>
         <el-input v-model="form.userName" placeholder="请输入用户名">

@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="liList">
     <div class="todoUp">
       <input
         v-show="!todoObj.isEdit"
@@ -19,23 +19,24 @@
         @blur="updetaTodo(todoObj, $event)"
         ref="inputTitle"
       />
+    </div>
+    <div class="buttonDown">
       <button
         type="button"
         v-show="!todoObj.isEdit"
-        class="del"
+        class="btn btn-danger"
         @click="deleteTodo(todoObj)"
       >
         delete
       </button>
       <button
-        class="edit"
+        class="btn btn-primary"
         type="button"
         v-show="!todoObj.isEdit"
         @click="editTodo(todoObj)"
       >
         edit
       </button>
-      <div class="qipaotu" v-show="!todoObj.isEdit">{{ todoObj.title }}</div>
     </div>
   </li>
 </template>
@@ -88,66 +89,49 @@ export default {
 };
 </script>
 <style scoped>
-li {
-  font-size: 18px;
+.liList {
+  width: 100%;
+  height: 45px;
+  border-bottom: rgb(205, 240, 170) 2px dashed;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   list-style: none;
-  margin-left: 0;
+  align-items: flex-end;
 }
 .todoUp {
-  height: 40px;
-  border-bottom: pink 1px solid;
+  flex: 7;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  list-style: none;
+  align-items: flex-end;
+}
+.buttonDown {
+  flex: 2;
 }
 .todoUp:hover {
   background-color: aquamarine;
 }
-.todoUp:hover .qipaotu {
+.check {
   display: block;
-}
-.qipaotu {
-  z-index: 999;
-  width: 70%;
-  position: relative;
-  display: none;
-  top: -22px;
-  left: 15px;
-  font-size: 12px;
-  border-radius: 10px;
-  padding: 0px 5px;
-  background-color: rgb(162, 161, 159, 0.5);
+  height: 20px;
+  width: 20px;
 }
 .todoUp h4 {
-  width: 55%;
+  color: rgb(20, 47, 114);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  line-height: 35px;
   display: inline-block;
   padding-left: 5px;
+  margin: 0px;
 }
-.check {
-  position: relative;
-  top: -20px;
-}
+
 li .form-control {
   width: 80%;
-  position: relative;
-  top: 5px;
-  left: 10px;
 }
 li button {
-  border: none;
-  float: right;
-  height: 20px;
-  font-size: 15px;
-  border-radius: 7px;
-  position: relative;
-  bottom: -20px;
-  margin-right: 2px;
-}
-.del {
-  background-color: rgb(244, 92, 127);
-}
-.edit {
-  background-color: rgb(62, 216, 109);
+  margin-left: 10px;
 }
 </style>

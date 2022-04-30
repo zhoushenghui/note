@@ -1,18 +1,16 @@
 <template>
   <div class="suibian">
-    <div class="item">
-      <ul>
-        <myTodo
-          v-show="isShow"
-          v-for="todoObj in newtodos"
-          :key="todoObj.id"
-          :todoObj="todoObj"
-        />
-      </ul>
-    </div>
-    <h1 v-show="!isShow" class="load">loading...</h1>
+    <ul v-if="isShow" class="ulList">
+      <myTodo
+        v-show="isShow"
+        v-for="todoObj in newtodos"
+        :key="todoObj.id"
+        :todoObj="todoObj"
+      />
+    </ul>
+    <h1 v-if="!isShow" class="load">loading...</h1>
     <button
-      v-show="isShow"
+      v-if="isShow"
       class="btn btn-primary send"
       @click="sureDone(newtodos)"
     >
@@ -50,21 +48,24 @@ export default {
 </script>
 <style scoped>
 .suibian {
-  padding-bottom: 20px;
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
-.load{
-  position: relative;
-  top:-370px;
-
+.btn {
+  margin: 0px;
 }
-.send {
-  margin-top: 20px;
-  margin-left: 50%;
+.load {
+  margin: 200px auto;
 }
-.item {
-  margin-top: 30px;
-  width: 90%;
-  height:370px;
+.ulList {
+  width: 100%;
+  height: 577px;
+  padding: 0px;
   overflow: hidden;
   overflow-y: scroll;
 }

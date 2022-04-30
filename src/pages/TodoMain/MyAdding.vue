@@ -1,7 +1,7 @@
 <template>
   <div class="add">
     <div class="addTodo">
-      <h6>默认：todo</h6>
+      <h6>默认：<del>done</del>...<em>todo</em></h6>
       <span class="input-group-addon">
         <el-radio v-model="change" label="false">todo</el-radio>
         <el-radio v-model="change" label="true">done</el-radio>
@@ -16,7 +16,9 @@
         />
       </div>
     </div>
-    <footerTodo />
+    <div class="footerTodo">
+      <footerTodo />
+    </div>
   </div>
 </template>
 <script>
@@ -45,19 +47,38 @@ export default {
 };
 </script>
 <style scoped>
+.add {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+}
 .addTodo {
-  margin: 0px 20px 0px 20px;
-  padding: 20px;
+  width: 100%;
+  height: 40%;
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: column nowrap;
+  margin: 0 20%;
 }
 .input-group-addon {
-  margin: auto;
   border: none;
   background-color: rgb(245, 225, 197);
-  width: 80%;
+  width: 60%;
 }
 .grid-content {
-  width: 80%;
+  width: 60%;
   border-radius: 4px;
   min-height: 36px;
+}
+.footerTodo {
+  width: 90%;
+  height: 60%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+  margin: auto;
+  align-items: flex-end;
 }
 </style>

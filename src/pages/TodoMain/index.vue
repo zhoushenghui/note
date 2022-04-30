@@ -73,21 +73,28 @@ export default {
 
 <style scoped>
 .row {
-  background-color: #f8e4c9 ;
-  width: 90%;
-  position: fixed;
-  top: 10%;
-  left: 8%;
+  background-color: #f8e4c9;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  margin-top: 50px;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
 }
+
 .passBtn {
   margin: 0;
   width: 50%;
 }
-.upmain{
-  height: 25px;
+.upmain {
+  width: 100%;
+  height: 35px;
 }
 .view {
-  position: relative;
-  margin-top: 20px;
+  width: 100%;
+  padding-bottom: 20px;
+  display: flex;
+  height: calc(100% - 35px);
 }
 </style>
