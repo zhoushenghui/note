@@ -109,6 +109,10 @@ export default {
 }
 .buttonDown {
   flex: 2;
+  display: flex;
+}
+.buttonDown :nth-of-type(2) {
+  order: -1;
 }
 .todoUp:hover {
   background-color: aquamarine;
