@@ -27,7 +27,7 @@ export default {
 </script>
 <style scoped>
 .todolistup {
-  width: 70%;
+  width: 90%;
   height: 100%;
   margin: auto;
   display: flex;

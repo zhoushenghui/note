@@ -29,16 +29,13 @@ export default {
   background-color: rgb(235, 250, 223);
   font-size: 16px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  flex-direction: row;
+  justify-content: center;
 }
 .headerWai {
   height: 100%;
-  align-items: flex-end;
   width: 70%;
   background-color: rgb(212, 245, 185);
-  margin: 0px auto;
-  align-self: center;
   display: flex;
   justify-content: flex-end;
 }

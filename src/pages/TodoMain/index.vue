@@ -74,13 +74,14 @@ export default {
 <style scoped>
 .row {
   background-color: #f8e4c9;
-  width: 100%;
+  width: 70%;
+  min-width: 375px;
   height: 100%;
-  margin: auto;
-  margin-top: 50px;
+  margin-top: 20px;
   display: flex;
   flex-flow: column nowrap;
   justify-content: flex-start;
+  align-content: center;
 }
 
 .passBtn {

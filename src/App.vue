@@ -16,25 +16,34 @@ export default {
 </script>
 
 <style>
+* {
+  margin: 0;
+  padding: 0;
+}
 body {
+  width: 100%;
+  height: 100%;
   background-image: url(assets/picture.webp);
+  display: flex;
+  overflow: hidden;
+  align-items: center;
 }
 .main {
   width: 100%;
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
+  align-content: center;
 }
 .list {
   height: calc(100%-30px);
-  width: 70%;
-  margin: auto;
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: center;
+  align-items: center;
 }
 .login {
-  width: 380px;
-  margin: 200px auto;
+  width: 370px;
 }
 </style>

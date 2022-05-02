@@ -55,12 +55,11 @@ export default {
   justify-content: space-between;
 }
 .addTodo {
-  width: 100%;
   height: 40%;
   display: flex;
   justify-content: flex-start;
   flex-flow: column nowrap;
-  margin: 0 20%;
+  align-items: center;
 }
 .input-group-addon {
   border: none;
