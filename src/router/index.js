@@ -13,7 +13,6 @@ VueRouter.prototype.push = function (location, resolve, reject) {
 }
 
 const router = new VueRouter({
-    base: 'note',
     routes
 });
 

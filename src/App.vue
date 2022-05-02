@@ -33,7 +33,7 @@ body {
   height: 100%;
   display: flex;
   flex-flow: column nowrap;
-  align-content: center;
+  align-items: center;
 }
 .list {
   height: calc(100%-30px);
@@ -44,6 +44,7 @@ body {
   align-items: center;
 }
 .login {
+  margin-top: 20%;
   width: 370px;
 }
 </style>

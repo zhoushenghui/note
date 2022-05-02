@@ -35,7 +35,6 @@ export default {
 .headerWai {
   height: 100%;
   width: 70%;
-  background-color: rgb(212, 245, 185);
   display: flex;
   justify-content: flex-end;
 }
